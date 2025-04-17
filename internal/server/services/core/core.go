@@ -4,17 +4,16 @@ import (
 	"html/template"
 
 	"github.com/TuanKiri/weather-mcp-server/internal/server/services"
-	"github.com/TuanKiri/weather-mcp-server/pkg/weatherapi"
 )
 
 type CoreServices struct {
 	renderer   *template.Template
-	weatherAPI *weatherapi.WeatherAPI
+	weatherAPI services.WeatherAPIProvider
 
 	weatherService *WeatherService
 }
 
-func New(renderer *template.Template, weatherAPI *weatherapi.WeatherAPI) *CoreServices {
+func New(renderer *template.Template, weatherAPI services.WeatherAPIProvider) *CoreServices {
 	return &CoreServices{
 		renderer:   renderer,
 		weatherAPI: weatherAPI,

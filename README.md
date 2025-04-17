@@ -6,7 +6,8 @@
 [![License](https://img.shields.io/badge/license-MIT-red.svg)](LICENSE)
 [![Go Version](https://img.shields.io/github/go-mod/go-version/TuanKiri/weather-mcp-server)](go.mod)
 [![Go Report Card](https://goreportcard.com/badge/github.com/TuanKiri/weather-mcp-server?cache)](https://goreportcard.com/report/github.com/TuanKiri/weather-mcp-server)
-[![Build](https://github.com/TuanKiri/weather-mcp-server/workflows/Build/badge.svg)](https://github.com/TuanKiri/weather-mcp-server/actions?workflow=Build)
+[![Build](https://github.com/TuanKiri/weather-mcp-server/actions/workflows/go.yml/badge.svg?branch=master)](https://github.com/TuanKiri/weather-mcp-server/actions?workflow=Build)
+[![Tests](https://github.com/TuanKiri/weather-mcp-server/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/TuanKiri/weather-mcp-server/actions?workflow=Test)
 
 <strong>[Report Bug](https://github.com/TuanKiri/weather-mcp-server/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml)</strong> | <strong>[Request Feature](https://github.com/TuanKiri/weather-mcp-server/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml)</strong>
 
@@ -29,7 +30,6 @@ To use your MCP server with Claude Desktop, add it to your Claude configuration:
   "mcpServers": {
     "weather-mcp-server": {
       "command": "/path/to/weather-mcp-server",
-      "args": [],
       "env": {
         "WEATHER_API_KEY": "your-api-key"
       }
@@ -62,7 +62,7 @@ go build -o weather-mcp-server ./cmd/weather-mcp-server
 
 ## Using MCP with Docker Containers
 
-#### 1. Build the Docker image:
+#### 1. Build the Docker Image:
 
 ```shell
 docker build -t weather-mcp-server .
@@ -98,6 +98,30 @@ The project is organized into several key directories:
 │       ├── tools # MCP tools
 │       └── view # Templates for displaying messages
 └── pkg
+```
+
+## Testing
+
+If you're adding new features, please make sure to include tests for them.
+
+#### 1. Install the mockgen tool:
+
+```shell
+go install go.uber.org/mock/mockgen@latest
+```
+
+See the installation guide on [go.uber.org/mock](https://github.com/uber-go/mock?tab=readme-ov-file#installation).
+
+#### 2. Use the following command to generate mock files:
+
+```shell
+make generate-mocks
+```
+
+#### 3. To run unit tests:
+
+```shell
+make run-tests
 ```
 
 ## Contributing
